@@ -1,28 +1,33 @@
 import React from 'react';
 import Card from './Card';
-import './CardList.css';
 
-const CardList = ({user}) =>{
+const CardList = ({users}) =>{
 
-//    <div className="container">
-  //  <div className="row"></div>
 
   return(
   
-    <div className="container">        {
+    <div className="container mt-80 row ">
+    <div className="row ">   
+         {
      users.map((user, i) => {
    return(
     <Card 
-    userkey = {users[i]._id}
+    _id = {users[i]._id}
     name = {users[i].name} 
     id = {users[i].id} 
     ipAdress = {users[i].ipAdress}
-    phone = {users[i].phone}>
+    phone = {users[i].phone}
+    city = {users[i].city}
+    country = {users[i].country}
+    >
+
+    
             
     </Card>
    );
   }  )
     }
+</div>
 </div>
 );
 

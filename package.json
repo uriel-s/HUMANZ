@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "mongoose": "^6.0.7",
-    "save": "^2.4.0"
-  }
-}
