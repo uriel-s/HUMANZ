@@ -21,11 +21,9 @@ const UserSchema = new mongoose.Schema({
    
     city : {
         type: String,
-        required:false,
     },
     country : {
         type: String,
-        required:false,
     },
 
 });

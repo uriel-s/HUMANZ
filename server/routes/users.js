@@ -9,7 +9,6 @@ const Axios = require("axios");
 //add  new user
 router.post('/add', 
   check('name', 'Name is required').notEmpty(),
-  check('email', 'Please include a valid email').isEmail(),
   check('id',    "").isLength({ min: 9, max : 9 }),
   check('phone',    "").notEmpty()
   ,async (req, res) => {
@@ -18,6 +17,7 @@ router.post('/add',
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+    
 
         const newUser = new User ({
             name:  req.body.name,
@@ -25,6 +25,20 @@ router.post('/add',
             ipAdress: req.body.ipAdress,
             phone : req.body.phone,
             });
+
+
+            const id = req.body.id;
+            let oldUser = await User.findOne({ id });
+
+            if (oldUser) {
+              return res
+                .status(400)
+                .json({ errors: [{ msg: 'User already exists' }] });
+            }
+
+
+
+            
           try{
             const saveUser = await  newUser.save();
             res.json(saveUser);
@@ -86,7 +100,7 @@ router.delete('/delete/:id', async (req, res) => {
   }
 
 //find location by IP Adress 
-router.post('/find/', async (req, res) => {
+router.post('/find/:id/:ip', async (req, res) => {
   const id =req.params.id;
     const ip =req.params.ip;
     const{ city, country} = await findLocation(ip);

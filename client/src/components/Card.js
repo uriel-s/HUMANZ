@@ -12,11 +12,12 @@ const Card = ({_id,name, id, ipAdress,phone ,city,country}) =>{
 
 
         const upDateLocation =()=>{
+            console.log("upDateLocation!!!!!!!")
             Axios.post(`http://localhost:5000/users/find/${_id}/${ipAdress}`)
-            window.location.reload(false)
+            window.location.reload(true)
             };
     
-    const picUrl = id.slice(0,2);
+    const picUrl = id.slice(0,1);
     return(
 
 

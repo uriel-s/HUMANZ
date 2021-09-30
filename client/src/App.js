@@ -5,6 +5,7 @@ import AddUser from "./components/AddUser";
 import SearchBox from './components/SearchBox';
 import CardList from './components/CardsList';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import datau from './components/data';
 
 
 
@@ -50,7 +51,21 @@ function App() {
     setAddForm("open");
     }
   
+  const uploudd = ()=> {
+    datau.map(user => {
+       let name = user.name;
+       let id = user.id ;
+       let ipAdress = user.ipAdress ;
+       let phone = user.phone;
+       Axios.post("http://localhost:5000/users/add", {
+        name: name, 
+        id :id,
+        ipAdress:ipAdress,
+        phone:phone,
+    });
 
+      })
+  }
 
   return (
     
